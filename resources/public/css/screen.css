@@ -33,3 +33,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+*:focus {
+  outline: none;
+  background-color: yellow;
+}
+
+.selected {
+  border-style: dotted;
+}
+
+.is-invalid {
+  color: red;
+}
