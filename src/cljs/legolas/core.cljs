@@ -46,6 +46,7 @@
    ])
 
 (defn home-page []
+  (prn "home-page called")
   [:section.section>div.container>div.content
    (when-let [docs @(rf/subscribe [:docs])]
      [:div {:dangerouslySetInnerHTML {:__html (md->html docs)}}])])
@@ -93,5 +94,6 @@
 
 (defn init! []
   (start-router!)
+  (rf/dispatch [:set-router router])
   (ajax/load-interceptors!)
   (mount-components))

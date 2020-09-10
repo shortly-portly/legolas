@@ -10,6 +10,7 @@
 (rf/reg-event-db
   :common/navigate
   (fn [db [_ match]]
+    (prn "naviage called")
     (let [old-match (:common/route db)
           new-match (assoc match :controllers
                                  (rfc/apply-controllers (:controllers old-match) match))]
@@ -18,11 +19,17 @@
 (rf/reg-fx
   :common/navigate-fx!
   (fn [[k & [params query]]]
+    (prn "nav-fx k" k)
+    (prn "nav-fx params :" params)
+    (prn "nav-fx query :" query)
     (rfe/push-state k params query)))
 
 (rf/reg-event-fx
   :common/navigate!
   (fn [_ [_ url-key params query]]
+    (prn "url-key :" url-key)
+    (prn "params :" params)
+    (prn "query :" query)
     {:common/navigate-fx! [url-key params query]}))
 
 (rf/reg-event-db
